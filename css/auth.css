@@ -1,0 +1,66 @@
+/* ============================================================
+   TALLENTEX — AUTH PAGES (Signup / Login)
+   ============================================================ */
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-side {
+  background: linear-gradient(160deg, var(--navy-deep), var(--navy) 60%, #2b4fc4);
+  color: #fff;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.auth-side .brand { color: #fff; }
+.auth-side .brand .mark { background: #fff; color: var(--navy-deep); }
+.auth-side h1 { color: #fff; font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem); max-width: 420px; }
+.auth-side p { color: rgba(255,255,255,0.78); max-width: 380px; }
+.auth-side .stat-row { display: flex; gap: 28px; margin-top: 30px; }
+.auth-side .stat-row .num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; }
+.auth-side .stat-row .label { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+.auth-side .quote { font-size: 0.85rem; color: rgba(255,255,255,0.6); border-top: 1px solid rgba(255,255,255,0.2); padding-top: 16px; }
+
+.auth-form-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  overflow-y: auto;
+}
+.auth-form-card { width: 100%; max-width: 460px; }
+.auth-form-card .top-links { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.auth-form-card .top-links .mark { width: 30px; height: 30px; font-size: 0.85rem; }
+
+.auth-tab-title { margin-bottom: 4px; }
+.auth-subtitle { margin-bottom: 26px; }
+
+.password-field { position: relative; }
+.password-field .toggle-visibility {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--ink-soft); cursor: pointer;
+  font-size: 0.78rem; font-weight: 600; min-height: unset; padding: 6px;
+}
+
+.strength-meter { display: flex; gap: 4px; margin-top: 6px; }
+.strength-meter span { height: 4px; flex: 1; border-radius: 2px; background: var(--gray-soft); }
+.strength-meter.weak span:nth-child(1) { background: var(--red); }
+.strength-meter.medium span:nth-child(-n+2) { background: var(--amber); }
+.strength-meter.strong span { background: var(--green); }
+
+.auth-footer-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--ink-soft); }
+
+.form-section-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--ink-soft); margin: 22px 0 10px;
+}
+.form-section-label:first-child { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .auth-shell { grid-template-columns: 1fr; }
+  .auth-side { display: none; } /* mobile-first: keep the small screen focused on the form */
+}

@@ -1,0 +1,69 @@
+/* ============================================================
+   TALLENTEX — ADMIN PANEL
+   Denser, data-table-first layout — this is a control room, not
+   a marketing surface. Reuses tokens from style.css.
+   ============================================================ */
+
+.admin-shell { display: grid; grid-template-columns: 230px 1fr; min-height: 100vh; }
+
+.admin-sidebar {
+  background: var(--ink); color: #fff; padding: 20px 14px;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.admin-sidebar .brand { color: #fff; margin-bottom: 22px; padding: 0 8px; }
+.admin-sidebar .brand .mark { background: var(--amber); color: #1a1200; }
+.admin-sidebar .brand small { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.5); font-weight: 600; letter-spacing: 0.05em; }
+.admin-sidebar nav { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.admin-sidebar nav a {
+  display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.68);
+  padding: 10px 12px; border-radius: var(--radius-s); font-weight: 600; font-size: 0.87rem;
+}
+.admin-sidebar nav a:hover { background: rgba(255,255,255,0.06); color: #fff; text-decoration: none; }
+.admin-sidebar nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+.admin-sidebar .icon { width: 18px; text-align: center; }
+.admin-sidebar .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 12px; }
+
+.admin-main { min-width: 0; }
+.admin-header {
+  padding: 18px 26px; border-bottom: 1px solid var(--line); background: #fff;
+  position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between;
+}
+.admin-content { padding: 22px 26px 60px; }
+
+/* Data table */
+.data-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-m); background: #fff; }
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 640px; }
+table.data-table th {
+  text-align: left; padding: 12px 14px; background: var(--gray-soft); color: var(--ink-soft);
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700;
+  position: sticky; top: 0;
+}
+table.data-table td { padding: 12px 14px; border-top: 1px solid var(--line); vertical-align: middle; }
+table.data-table tr:hover td { background: #fafbfd; }
+
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.toolbar input[type="search"], .toolbar select {
+  min-height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: var(--radius-s); background: #fff;
+}
+
+/* Live monitor */
+.live-user-row { display: flex; justify-content: space-between; align-items: center; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-s); margin-bottom: 10px; background: #fff; }
+.live-user-row .name-cell { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.live-progress-bar { width: 140px; height: 6px; background: var(--gray-soft); border-radius: 4px; overflow: hidden; }
+.live-progress-bar span { display: block; height: 100%; background: var(--navy); }
+
+/* Kanban-ish subject distribution builder */
+.subject-row { display: grid; grid-template-columns: 1fr 100px auto; gap: 10px; align-items: end; margin-bottom: 10px; }
+
+/* Question card in bank */
+.question-bank-item { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 14px 16px; margin-bottom: 10px; background: #fff; }
+.question-bank-item .q-top { display: flex; justify-content: space-between; gap: 10px; }
+.question-bank-item .q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 10px 0; font-size: 0.85rem; color: var(--ink-soft); }
+.question-bank-item .q-opts .correct { color: var(--green); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar { display: none; }
+  .admin-content { padding: 16px; }
+}

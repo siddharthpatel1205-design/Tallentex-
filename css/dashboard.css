@@ -1,0 +1,95 @@
+/* ============================================================
+   TALLENTEX — APP SHELL (student dashboard + inner pages)
+   Sidebar on desktop, bottom tab bar on mobile.
+   ============================================================ */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--ink);
+  color: #fff;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar .brand { color: #fff; margin-bottom: 30px; padding: 0 8px; }
+.sidebar .brand .mark { background: var(--amber); color: #1a1200; }
+.sidebar nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.sidebar nav a {
+  display: flex; align-items: center; gap: 10px;
+  color: rgba(255,255,255,0.7);
+  padding: 11px 12px; border-radius: var(--radius-s);
+  font-weight: 600; font-size: 0.92rem;
+}
+.sidebar nav a:hover { background: rgba(255,255,255,0.06); text-decoration: none; color: #fff; }
+.sidebar nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
+.sidebar .icon { width: 18px; text-align: center; }
+.sidebar .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; }
+
+.main-area { min-width: 0; }
+.page-header {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 30;
+}
+.page-content { padding: 24px 28px 100px; }
+
+.presence-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.presence-dot.online { background: var(--green); }
+.presence-dot.offline { background: #b8bccb; }
+
+/* Welcome banner */
+.welcome-banner {
+  background: linear-gradient(120deg, var(--navy), var(--navy-deep));
+  color: #fff; border-radius: var(--radius-l);
+  padding: 26px 28px; margin-bottom: 24px;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.welcome-banner h2 { color: #fff; margin-bottom: 4px; }
+.welcome-banner p { color: rgba(255,255,255,0.78); margin: 0; }
+
+/* Stat cards */
+.stat-card { display: flex; flex-direction: column; gap: 4px; }
+.stat-card .stat-value { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; }
+.stat-card .stat-label { font-size: 0.82rem; color: var(--ink-soft); }
+
+/* Test list cards */
+.test-card { display: flex; flex-direction: column; gap: 10px; }
+.test-card .test-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--ink-soft); }
+.test-card .test-meta span { display: flex; align-items: center; gap: 4px; }
+.test-card .subject-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.subject-tag { font-size: 0.72rem; font-weight: 600; background: var(--gray-soft); color: var(--ink-soft); padding: 3px 9px; border-radius: 100px; }
+
+/* Mobile bottom nav */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fff; border-top: 1px solid var(--line);
+  z-index: 60;
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.bottom-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+.bottom-nav li { flex: 1; }
+.bottom-nav a {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  color: var(--ink-soft); font-size: 0.68rem; font-weight: 600; padding: 6px 0; border-radius: var(--radius-s);
+}
+.bottom-nav a.active { color: var(--navy); }
+.bottom-nav .icon { font-size: 1.1rem; }
+
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .bottom-nav { display: block; }
+  .page-content { padding: 16px 16px 90px; }
+  .page-header { padding: 16px; }
+}
