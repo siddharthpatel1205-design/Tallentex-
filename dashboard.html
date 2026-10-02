@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/dashboard.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar-mount"></aside>
+
+  <div class="main-area">
+    <header class="page-header">
+      <h1 style="font-size:1.1rem;margin:0;">Dashboard</h1>
+      <div id="header-presence-mount"></div>
+    </header>
+
+    <main class="page-content">
+      <section class="welcome-banner">
+        <div>
+          <h2>Welcome back, <span id="welcome-name">Student</span> 👋</h2>
+          <p>Here's what's happening with your tests today.</p>
+        </div>
+        <a href="tests.html" class="btn" style="background:#fff;color:var(--navy);">Browse Tests</a>
+      </section>
+
+      <section class="grid grid-4">
+        <div class="card stat-card"><div class="stat-value" id="stat-available">–</div><div class="stat-label">Available Tests</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-inprogress">–</div><div class="stat-label">In Progress</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-completed">–</div><div class="stat-label">Completed</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-rank">–</div><div class="stat-label">Class Rank</div></div>
+      </section>
+
+      <section class="mt-24">
+        <div class="flex-between">
+          <h2>Available Tests</h2>
+          <a href="tests.html">View all →</a>
+        </div>
+        <div class="grid grid-2" id="available-tests-list"></div>
+      </section>
+
+      <section class="mt-24 grid" style="grid-template-columns: 2fr 1fr;">
+        <div class="card">
+          <h3>Recent Notifications</h3>
+          <div id="notifications-list" class="text-muted">No new notifications.</div>
+        </div>
+        <div class="card">
+          <h3>Performance Snapshot</h3>
+          <div id="performance-snapshot"><div class="loading-row"><div class="spinner"></div></div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomnav-mount"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/presence.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app-shell.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

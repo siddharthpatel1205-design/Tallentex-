@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tallentex— Online Learning &amp; Exam Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .hero { padding: 90px 0 70px; text-align: center; }
+  .hero h1 { max-width: 780px; margin: 0 auto 16px; }
+  .hero p.lead { max-width: 560px; margin: 0 auto 30px; font-size: 1.05rem; }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .feature-strip { padding: 40px 0 90px; }
+  .feature-strip .card { text-align: left; }
+  .feature-strip .card h3 { margin-bottom: 6px; }
+  #boot-loading { display:flex; align-items:center; justify-content:center; min-height:60vh; }
+</style>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="brand"><img class="mark" src="favicon.png" alt="Tallentex"><span>TALLENTEX</span></div>
+    <div class="nav-links">
+      <a href="login.html">Log in</a>
+      <a href="signup.html" class="active">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<main id="boot-loading"><div class="spinner"></div></main>
+
+<template id="landing-template">
+  <section class="hero container">
+        <img src="favicon.png" id="imgAdmin" >
+    <h1>One platform for mixed-subject online exams practice — free and legal, all online.</h1>
+    <p class="lead">Tallentex lets students take timed, multi-subject MCQ tests from any device, and gives real-time result. All the questions from syllabus of Tallentex enrollment plateform.</p>
+    <div class="hero-actions">
+      <a href="signup.html" class="btn btn-primary">Create student account</a>
+      <a href="login.html" class="btn btn-secondary">Log in</a>
+    </div>
+  </section>
+
+  <section class="feature-strip container grid grid-3">
+    <div class="card">
+      <h3>Siddharth-Academy Developer</h3>
+      <p>I am Software Engineer, Website, and App Designer. I can build very long web apps for you. You can contact us by Email - siddharthpatel1205@gmail.com and Insta ID - siddharth_patel_1205</p>
+    </div>
+    <div class="card">
+      <h3>Mixed-subject tests</h3>
+      <p>A single test can pull questions from Maths, Physics, Chemistry, Biology and more — configured by subject-wise count.</p>
+    </div>
+    <div class="card">
+      <h3>Timer that can't be gamed</h3>
+      <p>Test start time is stored server-side, so refreshing the page never resets your remaining time.</p>
+    </div>
+    <div class="card">
+      <h3>Instant, detailed results</h3>
+      <p>Correct, wrong, unanswered, and negative marking are calculated the moment you submit — no waiting.</p>
+    </div>
+  </section>
+  <div id="builder">
+    <a href="admin/developer.html" id="builderContent">@developer_of_this_website</a>
+  </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+  // If already logged in, skip the landing page and go straight to the right dashboard.
+  Tallentex.sb.auth.getSession().then(async ({ data: { session } }) => {
+    const mount = document.getElementById("boot-loading");
+    if (!session) {
+      mount.replaceWith(document.getElementById("landing-template").content.cloneNode(true));
+      return;
+    }
+    try {
+      const { data: profile } = await Tallentex.sb.from("profiles").select("role").eq("id", session.user.id).single();
+      const role = profile ? profile.role : "student";
+      window.location.href = role === "admin" ? "admin/dashboard.html" : "dashboard.html";
+    } catch (e) {
+      mount.replaceWith(document.getElementById("landing-template").content.cloneNode(true));
+    }
+  });
+</script>
+</body>
+</html>

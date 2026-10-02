@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create your account — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/auth.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="auth-shell">
+  <aside class="auth-side">
+    <div>
+      <div class="brand"><span class="mark">TX</span><span>Tallentex</span></div>
+      <h1 class="mt-24">Register once. Take every test online.</h1>
+      <p>Tallentex is a fully online exam platform — no test centres, no paperwork. Sign up, get assigned tests, and see your results the moment you finish.</p>
+      <div class="stat-row">
+        <div><div class="num">50+</div><div class="label">Subjects covered</div></div>
+        <div><div class="num">Live</div><div class="label">Results &amp; ranking</div></div>
+        <div><div class="num">24/7</div><div class="label">Test availability</div></div>
+      </div>
+    </div>
+    <div class="quote">"Every test you take here is scored the instant you submit — no waiting for an answer key."</div>
+  </aside>
+
+  <div class="auth-form-wrap">
+    <div class="auth-form-card">
+      <div class="top-links">
+        <a href="index.html" class="brand"><span class="mark">TX</span><span>Tallentex</span></a>
+        <a href="login.html">Already registered? Log in</a>
+      </div>
+      <h2 class="auth-tab-title">Create your student account</h2>
+      <p class="auth-subtitle">Online registration only — takes about two minutes.</p>
+
+      <form id="signup-form" novalidate>
+        <div class="form-section-label">Candidate details</div>
+        <div class="field">
+          <label for="name">Candidate Name</label>
+          <input id="name" name="name" type="text" placeholder="Full name as per school records" required />
+          <div class="error-text"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="fatherName">Father's Name</label>
+            <input id="fatherName" name="fatherName" type="text" required />
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select>
+            <div class="error-text"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="dobDay">Date of Birth</label>
+            <div class="flex gap-8">
+              <select id="dobDay" required style="flex:1;"><option value="">Date</option></select>
+              <select id="dobMonth" required style="flex:1.4;"><option value="">Month</option></select>
+              <select id="dobYear" required style="flex:1.2;"><option value="">Year</option></select>
+            </div>
+            <input type="hidden" id="dob" name="dob" />
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <label for="ambition">Career Ambition</label>
+            <input id="ambition" name="ambition" type="text" placeholder="e.g. Doctor, Engineer" required />
+            <div class="error-text"></div>
+          </div>
+        </div>
+
+        <div class="form-section-label">Academic details</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="studentClass">Class Studying</label>
+            <select id="studentClass" name="studentClass" required>
+              <option value="">Select class</option>
+              <option>Class 6</option><option>Class 7</option><option>Class 8</option>
+              <option>Class 9</option><option>Class 10</option><option>Class 11</option>
+              <option>Class 12</option>
+            </select>
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <label for="board">School Board</label>
+            <select id="board" name="board" required>
+              <option value="">Select board</option>
+              <option>CBSE</option><option>ICSE</option><option>State Board</option><option>IB</option><option>Other</option>
+            </select>
+            <div class="error-text"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="schoolName">School Name</label>
+          <input id="schoolName" name="schoolName" type="text" required />
+          <div class="error-text"></div>
+        </div>
+
+        <div class="form-section-label">Login details</div>
+        <div class="field">
+          <label for="email">Email ID</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="mobile">Mobile / WhatsApp Number</label>
+          <input id="mobile" name="mobile" type="tel" inputmode="numeric" placeholder="10-digit number" required />
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input id="password" name="password" type="password" autocomplete="new-password" required />
+            <button type="button" class="toggle-visibility">Show</button>
+          </div>
+          <div class="strength-meter" id="strength-meter"><span></span><span></span><span></span></div>
+          <div class="hint">At least 8 characters.</div>
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="password-field">
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" required />
+            <button type="button" class="toggle-visibility">Show</button>
+          </div>
+          <div class="error-text"></div>
+        </div>
+
+        <div class="field">
+          <label class="flex gap-8" style="align-items:flex-start;font-weight:500;">
+            <input type="checkbox" name="proctoringConsent" required style="width:18px;height:18px;margin-top:2px;flex-shrink:0;" />
+            <span>I understand that while taking a test on Tallentex, my camera may be used to periodically capture snapshots for exam integrity, and this will always be shown with an on-screen recording indicator while active.</span>
+          </label>
+          <div class="error-text"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-16">Create Account</button>
+      </form>
+      <div class="auth-footer-link">Already have an account? <a href="login.html">Log in</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/presence.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  // Builds the Day/Month/Year DOB pickers and keeps the hidden #dob input
+  // (the field js/auth.js actually reads) in sync, as "YYYY-MM-DD".
+  (function () {
+    const dayEl = document.getElementById("dobDay");
+    const monthEl = document.getElementById("dobMonth");
+    const yearEl = document.getElementById("dobYear");
+    const hiddenEl = document.getElementById("dob");
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    for (let d = 1; d <= 31; d++) {
+      dayEl.add(new Option(String(d), String(d).padStart(2, "0")));
+    }
+    months.forEach((m, i) => monthEl.add(new Option(m, String(i + 1).padStart(2, "0"))));
+
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear - 5; y >= currentYear - 80; y--) {
+      yearEl.add(new Option(String(y), String(y)));
+    }
+
+    function syncHiddenDob() {
+      if (dayEl.value && monthEl.value && yearEl.value) {
+        hiddenEl.value = `${yearEl.value}-${monthEl.value}-${dayEl.value}`;
+      } else {
+        hiddenEl.value = "";
+      }
+    }
+    [dayEl, monthEl, yearEl].forEach(el => el.addEventListener("change", syncHiddenDob));
+  })();
+</script>
+</body>
+</html>

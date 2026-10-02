@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Test in progress — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/quiz.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<div id="quiz-root">
+  <header class="quiz-topbar">
+    <span class="test-title" id="test-title">Loading test…</span>
+    <div class="flex gap-12" style="align-items:center;">
+      <span class="text-muted hidden" style="font-size:0.8rem;" id="progress-summary"></span>
+      <div class="timer-pill" id="timer-pill">--:--</div>
+      <button class="btn btn-secondary btn-sm mobile-palette-toggle" id="mobile-palette-toggle">☰ Questions</button>
+    </div>
+  </header>
+
+  <div class="quiz-shell">
+    <main class="quiz-main">
+      <div class="card question-card" id="question-card">
+        <div class="loading-row"><div class="spinner"></div> Loading question…</div>
+      </div>
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="prev-btn">← Previous</button>
+        <button class="btn btn-danger" id="submit-btn">Submit Test</button>
+        <button class="btn btn-primary" id="next-btn">Next →</button>
+      </div>
+    </main>
+
+    <aside class="palette-panel" id="palette-panel">
+      <h3>Question Palette</h3>
+      <div class="palette-legend">
+        <div><span class="dot" style="background:var(--green);"></span>Answered</div>
+        <div><span class="dot" style="background:var(--amber);"></span>Marked for review</div>
+        <div><span class="dot" style="background:#fff;border:1.5px solid var(--line);"></span>Unanswered</div>
+      </div>
+      <div class="palette-grid" id="palette-grid"></div>
+      <button class="btn btn-danger submit-test-btn" onclick="submitTest(false)">Submit Test</button>
+    </aside>
+    <div class="palette-backdrop" id="palette-backdrop"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/presence.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/proctoring.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log in — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/auth.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="auth-shell">
+  <aside class="auth-side">
+    <div>
+      <div class="brand"><span class="mark">TX</span><span>Tallentex</span></div>
+      <h1 class="mt-24">Welcome back. Your next test is waiting.</h1>
+      <p>Log in to see available tests, resume an in-progress attempt, and track your performance over time.</p>
+      <div class="stat-row">
+        <div><div class="num">Instant</div><div class="label">Scoring</div></div>
+        <div><div class="num">Secure</div><div class="label">Firebase-backed</div></div>
+      </div>
+    </div>
+    <div class="quote">"If a test is in progress, the timer picks up exactly where you left off — even after a refresh."</div>
+  </aside>
+
+  <div class="auth-form-wrap">
+    <div class="auth-form-card">
+      <div class="top-links">
+        <a href="index.html" class="brand"><span class="mark">TX</span><span>Tallentex</span></a>
+        <a href="signup.html">New here? Create account</a>
+      </div>
+      <h2 class="auth-tab-title">Log in to Tallentex</h2>
+      <p class="auth-subtitle">Use the email and password you registered with.</p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email ID</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+            <button type="button" class="toggle-visibility">Show</button>
+          </div>
+          <div class="error-text"></div>
+        </div>
+        <div class="flex-between mt-8">
+          <button type="button" id="forgot-password-btn" class="btn btn-ghost btn-sm" style="padding-left:0;">Forgot Password?</button>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-16">Login</button>
+        <a href="signup.html" class="btn btn-secondary btn-block mt-8">Create Account</a>
+      </form>
+      <div class="auth-footer-link">Are you an administrator? <a href="admin/index.html">Admin login</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/presence.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  document.querySelector(".toggle-visibility").addEventListener("click", function () {
+    const input = this.closest(".password-field").querySelector("input");
+    input.type = input.type === "password" ? "text" : "password";
+    this.textContent = input.type === "password" ? "Show" : "Hide";
+  });
+</script>
+</body>
+</html>

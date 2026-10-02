@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profile — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/dashboard.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar-mount"></aside>
+  <div class="main-area">
+    <header class="page-header">
+      <h1 style="font-size:1.1rem;margin:0;">Profile</h1>
+      <div id="header-presence-mount"></div>
+    </header>
+    <main class="page-content">
+      <div class="grid" style="grid-template-columns: 1fr 1fr; align-items:start;">
+        <div class="card">
+          <h3>Your details</h3>
+          <p class="text-muted">Email: <strong id="profile-email"></strong> · Class: <strong id="profile-class"></strong> · Board: <strong id="profile-board"></strong></p>
+          <form id="profile-form" class="mt-16">
+            <div class="field"><label>Candidate Name</label><input name="name" required /></div>
+            <div class="field"><label>Father's Name</label><input name="fatherName" required /></div>
+            <div class="field"><label>Career Ambition</label><input name="ambition" /></div>
+            <div class="field"><label>School Name</label><input name="schoolName" /></div>
+            <div class="field"><label>Mobile / WhatsApp Number</label><input name="mobile" /></div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Change password</h3>
+          <form id="password-form" class="mt-16">
+            <div class="field"><label>Current Password</label><input type="password" name="currentPassword" required /></div>
+            <div class="field"><label>New Password</label><input type="password" name="newPassword" required /></div>
+            <button type="submit" class="btn btn-secondary">Update Password</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomnav-mount"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/presence.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app-shell.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>
