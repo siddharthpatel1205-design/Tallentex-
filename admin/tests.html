@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tests — Tallentex Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="../js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 style="font-size:1.1rem;margin:0;">Tests</h1>
+      <button class="btn btn-primary btn-sm" id="new-test-btn">+ New Test</button>
+    </header>
+    <main class="admin-content">
+      <div class="grid grid-2" id="admin-tests-list"></div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="test-modal">
+  <div class="modal" style="max-width:640px;max-height:88vh;overflow-y:auto;">
+    <h3>Test Configuration</h3>
+    <form id="test-form">
+      <div class="field"><label>Test Name</label><input name="name" required /></div>
+      <div class="field"><label>Description</label><textarea name="description"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Class</label><input name="testClass" placeholder="e.g. Class 10" required /></div>
+        <div class="field"><label>Time Limit (minutes)</label><input name="timeLimit" type="number" min="1" required /></div>
+      </div>
+
+      <div class="form-section-label">Subject-wise question distribution</div>
+      <div id="subject-rows"></div>
+      <button type="button" class="btn btn-secondary btn-sm" id="add-subject-row">+ Add Subject</button>
+
+      <div class="form-section-label">Add Questions Now (optional)</div>
+      <p class="hint" style="margin-top:-4px;">You don't have to add every question here — you can always add more later from <strong>Question Bank</strong> (manually or by importing a JSON file). This is just a shortcut so you can add a few right away.</p>
+      <div class="field-row">
+        <div class="field" style="flex:1 1 160px;">
+          <label>Subject</label>
+          <input id="iq-subject" list="iq-subject-list" placeholder="must match a subject above" />
+          <datalist id="iq-subject-list"></datalist>
+        </div>
+        <div class="field" style="flex:1 1 120px;">
+          <label>Difficulty</label>
+          <select id="iq-difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select>
+        </div>
+      </div>
+      <div class="field"><label>Question</label><textarea id="iq-question" placeholder="Type the question"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Option A</label><input id="iq-a" /></div>
+        <div class="field"><label>Option B</label><input id="iq-b" /></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Option C</label><input id="iq-c" /></div>
+        <div class="field"><label>Option D</label><input id="iq-d" /></div>
+      </div>
+      <div class="field">
+        <label>Correct Answer</label>
+        <select id="iq-correct"><option value="0">Option A</option><option value="1">Option B</option><option value="2">Option C</option><option value="3">Option D</option></select>
+      </div>
+      <button type="button" class="btn btn-secondary btn-block" id="iq-add-btn">+ Add This Question to List</button>
+      <div id="iq-pending-list" class="mt-16"></div>
+
+      <div class="form-section-label">Marking scheme</div>
+      <div class="field-row">
+        <div class="field"><label>Marks for Correct Answer</label><input name="correctMarks" type="number" step="0.5" value="4" required /></div>
+        <div class="field"><label>Negative Marks</label><input name="negativeMarks" type="number" step="0.5" value="1" required /></div>
+        <div class="field"><label>Passing Marks</label><input name="passingMarks" type="number" step="0.5" value="0" /></div>
+      </div>
+
+      <div class="form-section-label">Rules</div>
+      <div class="field"><label>Maximum Attempts</label><input name="maxAttempts" type="number" min="1" value="1" /></div>
+      <div class="field-row">
+        <label class="flex gap-8" style="align-items:center;"><input type="checkbox" name="randomizeQuestions" style="width:18px;height:18px;" /> Randomize Questions</label>
+        <label class="flex gap-8" style="align-items:center;"><input type="checkbox" name="randomizeOptions" style="width:18px;height:18px;" /> Randomize Options</label>
+      </div>
+      <div class="field-row">
+        <label class="flex gap-8" style="align-items:center;"><input type="checkbox" name="showResultImmediately" checked style="width:18px;height:18px;" /> Show Result Immediately</label>
+        <label class="flex gap-8" style="align-items:center;"><input type="checkbox" name="allowReview" style="width:18px;height:18px;" /> Allow Review</label>
+      </div>
+
+      <div class="form-section-label">Access control</div>
+      <div class="field">
+        <label>Who can access this test?</label>
+        <select name="accessType">
+          <option value="all">All Users</option>
+          <option value="selected">Selected Users (by UID)</option>
+          <option value="class">Selected Class</option>
+          <option value="group">Selected Group</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Values (comma-separated — UIDs, class names, or group names)</label>
+        <input name="accessValues" placeholder="e.g. Class 10, Class 11" />
+        <div class="hint">Leave blank when Access is "All Users". Find a user's UID on the Users page.</div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="close-test-modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save as Draft</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/ui-utils.js"></script>
+<script src="../js/presence.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  requireAuth((profile) => initTestsPage(profile), true);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Results — Tallentex Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="../js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 style="font-size:1.1rem;margin:0;">Results</h1>
+      <button class="btn btn-secondary btn-sm" id="export-results-btn">Export CSV</button>
+    </header>
+    <main class="admin-content">
+      <div class="toolbar"><input type="search" id="result-search" placeholder="Search by user or test…" style="min-width:260px;" /></div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead><tr><th>User</th><th>Test</th><th>Score</th><th>%</th><th>C/W/U</th><th>Submitted</th><th>Type</th><th>Proctoring</th></tr></thead>
+          <tbody id="results-tbody"><tr><td colspan="8"><div class="loading-row"><div class="spinner"></div></div></td></tr></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/ui-utils.js"></script>
+<script src="../js/presence.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  requireAuth((profile) => initAdminResultsPage(profile), true);
+</script>
+</body>
+</html>

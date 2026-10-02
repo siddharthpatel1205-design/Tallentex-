@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="../js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+  <div class="admin-main">
+    <header class="admin-header"><h1 style="font-size:1.1rem;margin:0;">Dashboard</h1></header>
+    <main class="admin-content">
+      <div class="grid grid-4">
+        <div class="card stat-card"><div class="stat-value" id="stat-total-users">–</div><div class="stat-label">Total Users</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-online-now">–</div><div class="stat-label">Online Now</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-currently-testing">–</div><div class="stat-label">Currently Testing</div></div>
+        <div class="card stat-card"><div class="stat-value" id="stat-completed-tests">–</div><div class="stat-label">Completed Attempts</div></div>
+      </div>
+      <div class="grid grid-2 mt-24">
+        <div class="card">
+          <h3>Quick actions</h3>
+          <div class="flex gap-8" style="flex-wrap:wrap;">
+            <a href="tests.html" class="btn btn-primary btn-sm">Create a Test</a>
+            <a href="questions.html" class="btn btn-secondary btn-sm">Add Questions</a>
+            <a href="live-monitor.html" class="btn btn-secondary btn-sm">Live Monitor</a>
+            <a href="messages.html" class="btn btn-secondary btn-sm">Send Message</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Published Tests</h3>
+          <div class="stat-value" id="stat-available-tests">–</div>
+          <p class="text-muted" style="margin:0;">currently visible to students</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/ui-utils.js"></script>
+<script src="../js/presence.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  requireAuth((profile) => initAdminDashboard(profile), true);
+</script>
+</body>
+</html>

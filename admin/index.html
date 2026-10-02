@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login — Tallentex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/auth.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="../js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="auth-shell">
+  <aside class="auth-side" style="background:linear-gradient(160deg,#0c1730,#10182b 60%,#1f3a8a);">
+    <div>
+      <div class="brand"><span class="mark">TX</span><span>Tallentex</span></div>
+      <h1 class="mt-24">Admin Control Room</h1>
+      <p>Manage tests, question banks, live student activity, and messaging from one place.</p>
+    </div>
+    <div class="quote">"See exactly who's testing, right now, and reach them instantly if something needs attention."</div>
+  </aside>
+
+  <div class="auth-form-wrap">
+    <div class="auth-form-card">
+      <div class="top-links">
+        <a href="../index.html" class="brand"><span class="mark">TX</span><span>Tallentex</span></a>
+      </div>
+      <h2 class="auth-tab-title">Admin Login</h2>
+      <p class="auth-subtitle">Restricted to authorized administrators.</p>
+
+      <form id="admin-login-form" novalidate>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="username" required /></div>
+        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required /></div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+      <div class="auth-footer-link"><a href="../login.html">← Back to student login</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/ui-utils.js"></script>
+<script src="../js/presence.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Settings — Tallentex Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#1f3a8a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Tallentex" />
+<script src="../js/pwa.js" defer></script>
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+  <div class="admin-main">
+    <header class="admin-header"><h1 style="font-size:1.1rem;margin:0;">Settings</h1></header>
+    <main class="admin-content">
+      <div class="card" style="max-width:520px;">
+        <h3>Platform Settings</h3>
+        <form id="settings-form">
+          <div class="field"><label>App Name</label><input name="appName" required /></div>
+          <div class="field"><label>Support Email</label><input name="supportEmail" type="email" /></div>
+          <div class="field"><label>Default Max Attempts (new tests)</label><input name="defaultMaxAttempts" type="number" min="1" /></div>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+      </div>
+      <div class="card mt-24" style="max-width:520px;">
+        <h3>Creating additional admins</h3>
+        <p class="text-muted">To promote a user to admin, set their <code>users/&#123;uid&#125;.role</code> field to <code>"admin"</code> from the Firebase Console or the Admin SDK — never from this frontend, since the security rules intentionally block students from writing their own role. See the setup guide for the first-admin bootstrap steps.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/ui-utils.js"></script>
+<script src="../js/presence.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  requireAuth((profile) => initSettingsPage(profile), true);
+</script>
+</body>
+</html>
